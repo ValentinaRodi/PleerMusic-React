@@ -1,6 +1,7 @@
 import  './tracks.css'
 import axios from 'axios'
 import LoginPage from '../../loginPage/LoginPage'
+import { useNavigate } from 'react-router-dom'
 
 const baseURL = "http://84.201.139.95:8000"
 
@@ -13,11 +14,14 @@ axios.get(`${baseURL}/catalog/track/all/`).then((res) => {
 })
 
 export default function Tracks() {
+    const navigate = useNavigate();
+   
+
     
     const loggedInUser = localStorage.getItem("user")
 
-    if (loggedInUser) {
-        return (<LoginPage />)
+    if (!loggedInUser) {
+        navigate('/', {replace: true})
     } else {
         return (
             <div className='tracks'>

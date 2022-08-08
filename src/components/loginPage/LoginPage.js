@@ -1,11 +1,12 @@
 /* eslint-disable eqeqeq */
 import  './loginPage.css'
 import logo from  './logo.png'
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //import axios from 'axios';
 
 
 export default function LoginPage() {
+    const navigate = useNavigate();
 
     const  reg_first_func = (e) =>{
         e.preventDefault();
@@ -33,7 +34,7 @@ export default function LoginPage() {
         }
         if(login != "" && password != ""){
             localStorage.setItem('user', login);
-            setTimeout(()=>{document.querySelector(".link_to_main").click();},200)
+            navigate('./MainPage', {replace: true})
             // const data = {
             //     email: login,
             //     password: password
@@ -68,7 +69,6 @@ export default function LoginPage() {
                         <button onClick={sendLogin} className="login_button">Войти</button>
                         <button onClick={reg_first_func} className="reg_button reg_first">Зарегистрироваться</button>
                         <button className="reg_button reg_next">Зарегистрироваться</button>
-                        <Link to="./MainPage" className="link_to_main">Link</Link>
                     </div>
 
                 </form>
