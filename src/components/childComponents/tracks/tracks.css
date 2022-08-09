@@ -1,4 +1,4 @@
-.tracks{
+.tracks {
     background: #1C1C1C;
     height: 100vh;
     margin-top: 384px;
@@ -6,7 +6,7 @@
     padding-left: 50px;
 }
 
-.track_wrap{
+.track_wrap {
   min-width: 1090px;
   max-width: 1200px;
 }
@@ -78,6 +78,8 @@
   font-size: 16px;
   line-height: 24px;
   color: #FFFFFF;
+
+  text-decoration: none;
 }
 
 .track__title-span {
@@ -105,6 +107,8 @@
   line-height: 24px;
   color: #FFFFFF;
   text-align: left;
+
+  text-decoration: none;
 }
 
 .track__album {
@@ -117,6 +121,8 @@
   font-size: 16px;
   line-height: 24px;
   color: #696969;
+
+  text-decoration: none;
 }
 
 .track__time-svg {
@@ -136,6 +142,10 @@
   color: #FFF;
 }
 
-.track_like:hover{
+.track_like {
+  margin-right: 12px;
+}
+
+.track_like:hover {
   cursor: pointer;
 }

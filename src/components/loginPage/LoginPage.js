@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function LoginPage() {
     const navigate = useNavigate();
 
-    const  reg_first_func = (e) =>{
+    const reg_first_func = (e) =>{
         e.preventDefault();
         const reg_first = document.querySelector(".reg_first");
         const login_button = document.querySelector(".login_button");
