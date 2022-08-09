@@ -8,15 +8,13 @@ let backendTracks = {}
 
 axios.get(`${baseURL}/catalog/track/all/`).then((res) => {
     backendTracks = res.data.results
-    console.log(backendTracks)
-    console.log(backendTracks[0].duration_in_seconds)
 })
 
 export default function Tracks() {
     
     const loggedInUser = localStorage.getItem("user")
 
-    if (loggedInUser) {
+    if (!loggedInUser) {
         return (<LoginPage />)
     } else {
         return (
@@ -42,7 +40,7 @@ export default function Tracks() {
                                 <a className="track__author-link" href="http://">{track.author}</a>
                             </div>
                             <div className="track__album">
-                                <a className="track__album-link" href="http://">{track.albom}</a>
+                                <a className="track__album-link" href="http://">{track.album}</a>
                             </div>
                             <div className="track__time">
                                 <svg className="track_like" width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">

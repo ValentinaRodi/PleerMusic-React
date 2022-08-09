@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
-import  './loginPage.css'
-import logo from  './logo.png'
-import { Link } from "react-router-dom";
+import './loginPage.css'
+import logo from './logo.png'
+import { Link } from "react-router-dom"
 //import axios from 'axios';
 
 
