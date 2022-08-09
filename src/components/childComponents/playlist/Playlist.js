@@ -14,6 +14,7 @@ export default function Playlist(props) {
     }, [])
 
     const openPlaylist = (playlistId) => {
+        props.setCurrentPlaylistTitle(playlists.find(playlist => playlist.id === playlistId).name)
         props.clearTracks() // Для красивого эффекта - показываем, что загружаем новые треки
         getTracksByPlaylist(playlistId)
         .then((res) => { props.setTracks(res.items) })

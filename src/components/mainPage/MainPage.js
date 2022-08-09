@@ -10,6 +10,7 @@ import Tracks from '../childComponents/tracks/Tracks'
 
 export default function MainPage() {
     const [tracks, setTracks] = useState(null)
+    const [currPlaylistTitle, setCurrentPlaylistTitle] = useState('Tracks')
 
     useEffect(() => {
         getTracksAll()
@@ -23,10 +24,14 @@ export default function MainPage() {
 
     return (
         <div>
-            <Header />
+            <Header title={currPlaylistTitle}/>
             <Menu />
             <Player />
-            <Playlist clearTracks={clearTracks} setTracks={setTracks}/>
+            <Playlist
+                clearTracks={clearTracks}
+                setTracks={setTracks}
+                setCurrentPlaylistTitle={setCurrentPlaylistTitle}
+            />
             <Tracks tracks={tracks}/>
         </div>
     )
