@@ -14,7 +14,7 @@ function secondsToString(timeSec) {
 
 export default function Tracks(props) {
     const [user, setUser] = useState(localStorage.getItem("user"))
-    const [tracks, setTracks] = useState(null)
+    const [tracks, setTracks] = useState(props.tracks)
     const navigate = useNavigate();
 
     // useEffect для отслеживания изменения user в localStorage
@@ -35,11 +35,10 @@ export default function Tracks(props) {
         if (!user) navigate('/', {replace: true})
     }, [user]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    // useEffect для первичной загрузки треков -> поменять на пропсы и вынести логику в MainPage.js
+    // useEffect для первичной загрузки треков через props и MainPage
     useEffect(() => {
-        getTracksAll()
-        .then((res) => { setTracks(res.results) })
-    }, [])
+        setTracks(props.tracks)
+    }, [props.tracks])
 
     return (
         <div className='tracks'>

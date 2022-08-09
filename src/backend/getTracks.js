@@ -9,7 +9,8 @@ export async function getTracksAll() {
 }
 
 export async function getTracksByPlaylist(playlistId) {
-    
+    const response = await axios.get(`${API_URL}/catalog/selection/${playlistId}`)
+    return response.data
 }
 
 export async function getPlaylists(n=3) {
@@ -20,4 +21,8 @@ export async function getPlaylists(n=3) {
             name: playlist.name || `Плейлист №${playlist.id}`
         }
     ))
+}
+
+export async function getTracksFavorite(userId) {
+    // TODO: Не понятно, как посмотреть избранные треки ¯\_(ツ)_/¯
 }
