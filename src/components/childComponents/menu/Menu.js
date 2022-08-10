@@ -16,13 +16,12 @@ export default function Menu() {
 
     return (
         <div className="left_side_menu">
-            <img className="logo" src={logo} alt="logo"/>
+            <Link to='/MainPage' className="burger_menu_a"><img className="logo" src={logo} alt="logo"/></Link>
             <div className="nav__burger burger" onClick={handleDisplayMenu}>
                 <span className="burger__line"></span>
                 <span className="burger__line"></span>
                 <span className="burger__line"></span>
             </div>
-
             <div className={displayMenu || 'burger_menu'}>
                 <Link to='/MainPage' className="burger_menu_a">Главное</Link>
                 <Link to='/MainPage' className="burger_menu_a">Мои треки</Link>
