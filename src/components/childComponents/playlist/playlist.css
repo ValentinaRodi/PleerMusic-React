@@ -37,3 +37,13 @@
 .playlist:hover{
     cursor: pointer;
 }
+
+@media(max-width: 1670px){
+    .playlist__wrapper{
+      left: 36px;
+      width: 230px;
+    }
+    .playlist{
+      width: 230px;
+    }
+  }

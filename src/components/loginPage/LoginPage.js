@@ -39,7 +39,7 @@ export default function LoginPage() {
             //     email: login,
             //     password: password
             // }
-            // axios.post('http://84.201.139.95:8000/user/login/',data)
+            // axios.post('http://84.201.139.95:8000/catalog/track/all',data)
             // .then(res => {
             // const resault = res.data;
             // console.log(resault);

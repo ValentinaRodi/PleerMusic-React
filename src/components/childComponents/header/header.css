@@ -1,30 +1,160 @@
-<div class="header">
-<img class="search_icon"src="img/icon/search.svg" alt="">
-<div class="input_avatar_block">
-    <input placeholder="Поиск" type="text" class="search">
-    <div class="avatar_block">
-        <p class="user_name">Джек Ричер</p>
-        <div class="avatar"></div>
-    </div>
-</div>
-<p class="header_title">Треки</p>
-<div class="search_by_block">
-    <p class="search_by">Искать по:</p>
-    <button class="search_by_button search_by_songer">исполнителю</button>
-    <button class="search_by_button search_by_date">году выпуска</button>
-    <button class="search_by_button search_by_genre">жанру</button>
-</div>
+.header{
+    position: fixed;
+    left: 244px;
+    top: 0;
+    padding-left: 50px;
+    z-index: 1000;
+    height: 384px;
+    width: 100%;
+    background: #1C1C1C;
+}
 
-<div class="header_tracks_wrap">
-    <div class="content__title playlist-title">
-        <div class="playlist-title__col col01">Трек</div>
-        <div class="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-        <div class="playlist-title__col col03">АЛЬБОМ</div>
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="6" cy="6" r="5.5" stroke="#696969"/>
-            <path d="M4 6H6.5V2.5" stroke="#696969"/>
-        </svg>    
-    </div>
-</div>
+.input_avatar_block{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
 
-</div> 
+.avatar_block{
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.user_name{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin-right: 16px;
+}
+
+.search{
+    width: 80%;
+    height: 51px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #4E4E4E;
+    outline: none;
+    color: #ffffff;
+    margin-top: 20px;
+    padding-left: 40px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.search::-webkit-input-placeholder { color: #ffffff; }
+.search::-moz-placeholder { color: #ffffff; } /* Firefox 19+ */
+.search:-moz-placeholder { color: #ffffff; } /* Firefox 18- */
+.search:-ms-input-placeholder { color: #ffffff }
+
+.search_icon{
+position: absolute;
+top: 37px;
+left: 57px;
+z-index: 1300;
+}
+
+.avatar{
+  width: 43px;
+  height: 43px;
+  background-color: #313131;
+  border-radius: 50%;
+}
+
+.header_title{
+    font-size: 64px;
+    line-height: 72px;
+    letter-spacing: -0.8px;
+    color: #FFFFFF;
+    margin-top: 51px;
+}
+
+.search_by_block{
+  display: flex;
+  align-items: center;
+  margin-top: 51px;
+}
+
+.search_by{
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.search_by_button{
+  height: 39px;
+  border: 1px solid #ffffff;
+  border-radius: 60px;
+  background: none;
+  outline: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  transition: all 0,2s;
+}
+
+.search_by_songer{
+  margin-left: 15px;
+}
+
+.search_by_date{
+  margin-left: 10px;
+}
+
+.search_by_genre{
+  margin-left: 10px;
+}
+
+.search_by_button:hover{
+  border: 1px solid #D9B6FF;
+  cursor: pointer;
+}
+
+.header_tracks_wrap{
+  min-width: 1090px;
+  max-width: 1200px;
+  margin-top: 51px;
+}
+
+.content__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: start;
+  margin-bottom: 24px;
+}
+
+.playlist-title__col {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  color: #696969;
+  text-transform: uppercase;
+}
+
+.col01 {
+  width: 490px;
+}
+
+.col02 {
+  width: 365px;
+}
+
+.col03 {
+  width: 332px;
+}
