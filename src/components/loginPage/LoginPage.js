@@ -2,7 +2,7 @@
 import  './loginPage.css'
 import logo from  './logo.png'
 import { useNavigate } from "react-router-dom";
-//import axios from 'axios';
+import axios from 'axios';
 
 
 export default function LoginPage() {
@@ -54,7 +54,7 @@ export default function LoginPage() {
     const inpClick = (e) =>{
         e.preventDefault();
         console.log(e);
-        e.target.style = "border: none;border-bottom:1px solid #D0CECE"
+        e.target.style = "border: none; border-bottom:1px solid #D0CECE"
     }
 
     return (
