@@ -1,0 +1,39 @@
+.playlist__wrapper {
+    position: fixed;
+    top: 340px;
+    right: 80px;
+    z-index: 1300;
+}
+.playlist {
+    width: 250px;
+    height: 150px;
+    margin-bottom: 30px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 150px;
+
+    text-align: center;
+    letter-spacing: -0.1px;
+
+    color: #FFFFFF;
+
+}
+
+.playlist01{
+    background: url('./img/playlist01.png') center;
+    background-size: cover;
+}
+.playlist02{
+    background: url('./img/playlist02.png') center;
+    background-size: cover;
+}
+.playlist03{
+    background: url('./img/playlist03.png') center;
+    background-size: cover;
+}
+
+.playlist:hover{
+    cursor: pointer;
+}

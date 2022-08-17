@@ -1,0 +1,30 @@
+.skeleton {
+    height: 51px;
+    width: 51px;
+    /* display: block; */
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(97, 97, 97, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      #313131;
+    background-repeat: repeat-y;
+    background-size: 50px 50px;
+    background-position: 0 0;
+    animation: shine 1s infinite;
+}
+@keyframes shine {
+    to {
+        background-position: 100% 0, 0 0;
+    }
+}
+
+.playlist.skeleton {
+    width: 250px;
+    height: 150px;
+}
+
+.playlist.skeleton:hover {
+    cursor: auto;
+}
