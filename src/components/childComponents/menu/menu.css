@@ -1,66 +1,79 @@
-.left_side_menu{
-    width: 244px;
-    height: 100vh;
-    background: #1C1C1C;
-    padding: 36px;
-    box-sizing: border-box;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1200;
-  }
-
-  .logo{
-    width: 113px;
-    height: 17px;
-  }
-
-  .nav__burger {
-    width: 20px;
-    height: 12px;
-    padding: 13px 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-            margin-top: 31px;
-            margin-bottom: 20px;
-  }
-
-  .nav__burger:hover{
-    cursor: pointer;
-  }
-
-  .burger__line {
-    display: inline-block;
-    width: 100%;
-    height: 1px;
-    background-color: #D3D3D3;
-  }
-
-  .burger_menu{
-    display: none;
-  }
-
-.burger_menu_a{
-    display: block;
-    margin-bottom: 26px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    line-height: 24px;
+.left_side_menu {
+	width: 244px;
+	height: 100vh;
+	background: #1C1C1C;
+	padding: 36px;
+	box-sizing: border-box;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1200;
 }
 
-.burger_menu_open{
-  display: flex;
+.logo {
+	width: 113px;
+	height: 17px;
+}
+
+.nav__burger {
+	width: 20px;
+	height: 12px;
+	padding: 13px 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	margin-top: 31px;
+	margin-bottom: 20px;
+}
+
+.nav__burger:hover {
+	cursor: pointer;
+}
+
+.burger__line {
+	display: inline-block;
+	width: 100%;
+	height: 1px;
+	background-color: #D3D3D3;
+}
+
+.burger_menu {
+	display: none;
+}
+
+.burger_menu-button {
+	font-size: 16px;
+    line-height: 24px;
+	color: #FFFFFF;
+	text-align: left;
+	
+	background: none;
+	border: none;
+
+	margin-bottom: 26px;
+}
+
+.burger_menu-button:hover {
+	cursor: pointer;
+}
+
+.burger_menu-button:disabled {
+	cursor: auto;
+	color: #696969;
+}
+
+.burger_menu_open {
+	display: flex;
 }
 
 .click-state {
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }

@@ -1,14 +1,22 @@
+import { useState } from 'react'
 import  './header.css'
 
 
 export default function Header(props) {
+    const [userLogin, setUserLogin] = useState(localStorage.getItem('user'))
+
+    const handleSearchChange = (event) => {
+        console.log(`> Search: ${event.target.value}`)
+        props.setSearchText(event.target.value)
+    }
+
     return (
       <div className="header">
       <img className="search_icon"src="img/icon/search.svg" alt=""/>
       <div className="input_avatar_block">
-          <input placeholder="Поиск" type="text" className="search"/>
+          <input placeholder="Поиск" type="text" className="search" onChange={handleSearchChange}/>
           <div className="avatar_block">
-              <p className="user_name">Джек Ричер</p>
+              <p className="user_name">{userLogin}</p>
               <div className="avatar"></div>
           </div>
       </div>

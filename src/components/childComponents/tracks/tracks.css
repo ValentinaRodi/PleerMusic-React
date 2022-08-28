@@ -1,151 +1,155 @@
 .tracks {
-    background: #1C1C1C;
-    height: 100vh;
-    margin-top: 384px;
-    margin-left: 244px;
-    padding-left: 50px;
+	background: #1C1C1C;
+	height: 100vh;
+	margin-top: 384px;
+	margin-left: 244px;
+	padding-left: 50px;
 }
 
 .track_wrap {
-  min-width: 1090px;
-  max-width: 1200px;
+	min-width: 1090px;
+	max-width: 1200px;
 }
 
 .playlist__item {
-  width: 100%;
-  display: block;
-  margin-bottom: 12px;
+	width: 100%;
+	display: block;
+	margin-bottom: 12px;
 }
 
 .playlist__track {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
 
 .track__title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 447px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	width: 447px;
 }
 
 .track__title-image {
-  width: 51px;
-  height: 51px;
-  padding: 16px;
-  background: #313131;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-right: 17px;
-  box-sizing: border-box;
+	width: 51px;
+	height: 51px;
+	padding: 16px;
+	background: #313131;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	margin-right: 17px;
+	box-sizing: border-box;
+}
+
+.track__title-image:hover {
+	cursor: pointer;
 }
 
 .track__title-svg {
-  width: 18px;
-  height: 17px;
-  fill: transparent;
-  stroke: #4E4E4E;
+	width: 18px;
+	height: 17px;
+	fill: transparent;
+	stroke: #4E4E4E;
 }
 
 .track__title-link {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #FFFFFF;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
 
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .track__title-span {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #4E4E4E;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #4E4E4E;
 }
 
 .track__author {
-  width: 321px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+	width: 321px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
 }
 
 .track__author-link {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #FFFFFF;
-  text-align: left;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+	text-align: left;
 
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .track__album {
-  width: 245px;
+	width: 245px;
 }
 
 .track__album-link {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #696969;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #696969;
 
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .track__time-svg {
-  width: 14px;
-  height: 12px;
-  margin-right: 17px;
-  fill: transparent;
-  stroke: #696969;
+	width: 14px;
+	height: 12px;
+	margin-right: 17px;
+	fill: transparent;
+	stroke: #696969;
 }
 
 .track__time-text {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: right;
-  color: #FFF;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	text-align: right;
+	color: #FFF;
 }
 
 .track_like {
-  margin-right: 12px;
+	margin-right: 12px;
 }
 
 .track_like:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
