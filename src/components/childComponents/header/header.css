@@ -76,6 +76,7 @@ z-index: 1300;
   display: flex;
   align-items: center;
   margin-top: 51px;
+  gap: 10px;
 }
 
 .search_by{
@@ -112,6 +113,22 @@ z-index: 1300;
 .search_by_button:hover{
   border: 1px solid #D9B6FF;
   cursor: pointer;
+  color: #D9B6FF;
+}
+
+.search_by_button_active{
+  height: 39px;
+  border-radius: 60px;
+  background: none;
+  outline: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  transition: all 0,2s;
+  border: 1px solid #AD61FF;
+  cursor: pointer;
+  color: #AD61FF;
 }
 
 .header_tracks_wrap{
@@ -157,4 +174,95 @@ z-index: 1300;
 
 .col03 {
   width: 332px;
+}
+
+.filter_icon {
+  position: absolute;
+  top: 300px;
+  background-color: #313131;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 300px;
+}
+
+.filter_icon_author {
+  left: 130px;
+}
+
+.filter_icon_year {
+  left: 280px;
+}
+
+.filter_icon_genre {
+  left: 430px;
+}
+
+.icon_filter {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color:#FFFFFF;
+  background-color: #313131;
+  border: 12px #313131;
+  cursor: pointer;
+}
+
+.icon_filter_chouse {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  background-color: #313131;
+  border: 12px #313131;
+  cursor: pointer;
+  color: #B672FF;
+  text-decoration-line: underline;
+}
+
+.icon_counter_display {
+  display: none;
+}
+
+.icon_counter_author {
+  position: absolute;
+  top: 300px;
+  background-color: #AD61FF;
+  border-radius: 50%;
+  width: 26px;
+  color:#FFFFFF;
+  height: 26px;
+  top: 240px;
+  left: 125px;
+  text-align: center;
+  line-height: 26px;
+}
+
+.icon_counter_year {
+  position: absolute;
+  top: 300px;
+  background-color: #AD61FF;
+  border-radius: 50%;
+  width: 26px;
+  color:#FFFFFF;
+  height: 26px;
+  top: 240px;
+  left: 276px;
+  text-align: center;
+  line-height: 26px;
+}
+
+.icon_counter_genre {
+  position: absolute;
+  top: 300px;
+  background-color: #AD61FF;
+  border-radius: 50%;
+  width: 26px;
+  color:#FFFFFF;
+  height: 26px;
+  top: 240px;
+  left: 425px;
+  text-align: center;
+  line-height: 26px;
 }

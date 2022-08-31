@@ -13,6 +13,8 @@ const TRACKS_TEST = [
         name: 'Touched',
         album: 'Step into Liquid Soundtrack',
         duration_in_seconds: 238,
+        genre: 'pop',
+        year: 2022,
         path: 'http://127.0.0.1:8887/src/test_audio/vast_touched.mp3',
     },
     {
@@ -21,6 +23,8 @@ const TRACKS_TEST = [
         name: 'Thrown Away',
         album: 'Turquoise & Crimson',
         duration_in_seconds: 240,
+        genre: 'rock',
+        year: 2021,
         path: 'http://127.0.0.1:8887/src/test_audio/vast_thrown_way.mp3',
     },
     {
@@ -29,6 +33,8 @@ const TRACKS_TEST = [
         name: 'Love is Gone',
         album: 'Sides of Canvas',
         duration_in_seconds: 247,
+        genre: 'popsa',
+        year: 2020,
         path: 'http://127.0.0.1:8887/src/test_audio/isaac_nightingale_love_is_gone.mp3',
     },
     {
@@ -37,6 +43,8 @@ const TRACKS_TEST = [
         name: 'Gimme Gimme',
         album: 'X',
         duration_in_seconds: 180,
+        genre: 'pop',
+        year: 2022,
         path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
     }
 ]
@@ -49,11 +57,17 @@ export default function MainPage() {
     const [currTrackHasAdjacent, setCurrTrackHasAdjacent] = useState(null)
     const [searchText, setSearchText] = useState('')
 
+    const [filterAuthors, setFilterAuthors] = useState([])
+    const [filterYears, setFilterYears] = useState([])
+    const [filterGenries, setFilterGenries] = useState([])
+
     useEffect(() => {
         getTracksAll()
         .then((res) => { setTracks(res.results) })
         .catch((err) => { setTracks(TRACKS_TEST) })
     }, [])
+
+
 
     // Для красивого эффекта - показываем, что загружаем новые треки
     const clearTracks = () => {
@@ -93,6 +107,10 @@ export default function MainPage() {
             <Header
                 title={currPlaylistTitle}
                 setSearchText={setSearchText}
+                tracks={tracks}
+                setFilterAuthors={setFilterAuthors}
+                setFilterYears={setFilterYears}
+                setFilterGenries={setFilterGenries}
             />
             <Menu
                 clearTracks={clearTracks}
@@ -119,12 +137,25 @@ export default function MainPage() {
                 tracks={
                     tracks === null ? tracks :
                     tracks.filter(track => { 
-                        return (track.name.toLowerCase() === searchText.toLowerCase()) 
-                        || (track.name.toLowerCase().includes(searchText.toLowerCase()))
-                        || (track.author.toLowerCase() === searchText.toLowerCase())
-                        || (track.author.toLowerCase().includes(searchText.toLowerCase()))
-                        || (track.album.toLowerCase() === searchText.toLowerCase())
-                        || (track.album.toLowerCase().includes(searchText.toLowerCase()))
+                        
+                        return ( 
+                            ((track.name.toLowerCase() === searchText.toLowerCase()) 
+                            || (track.name.toLowerCase().includes(searchText.toLowerCase()))
+                            || (track.author.toLowerCase() === searchText.toLowerCase())
+                            || (track.author.toLowerCase().includes(searchText.toLowerCase()))
+                            || (track.album.toLowerCase() === searchText.toLowerCase())
+                            || (track.album.toLowerCase().includes(searchText.toLowerCase())))
+                            && (filterAuthors.length === 0 ? true : filterAuthors.includes(track.author))  
+                            && (filterYears.length === 0 ? true : filterYears.includes(track.year)) 
+                            && (filterGenries.length === 0 ? true : filterGenries.includes(track.genre))  
+                        )
+
+                        // return (track.name.toLowerCase() === searchText.toLowerCase()) 
+                        // || (track.name.toLowerCase().includes(searchText.toLowerCase()))
+                        // || (track.author.toLowerCase() === searchText.toLowerCase())
+                        // || (track.author.toLowerCase().includes(searchText.toLowerCase()))
+                        // || (track.album.toLowerCase() === searchText.toLowerCase())
+                        // || (track.album.toLowerCase().includes(searchText.toLowerCase()))
                     })
                 }
                 setCurrentTrack={setCurrentTrackById}
