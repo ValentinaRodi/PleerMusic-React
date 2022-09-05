@@ -179,16 +179,6 @@ export default function Header(props) {
             setFilterIcon(1)
         } else {
             setFilterIcon(0)
-
-            // if (filterCountClassAuthor === 0) {
-            //     setClassNameButton('search_by_button', 'search_by_songer')
-            // }
-            // if (filterCountClassYear === 0) {
-            //     setClassNameButton('search_by_button', 'search_by_songer')
-            // }
-            // if (filterCountClassGenre === 0) {
-            //     setClassNameButton('search_by_button', 'search_by_songer')
-            // }
         }
     }
 
