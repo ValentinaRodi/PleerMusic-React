@@ -183,6 +183,7 @@ z-index: 1300;
   border-radius: 12px;
   padding: 30px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
   width: 300px;
