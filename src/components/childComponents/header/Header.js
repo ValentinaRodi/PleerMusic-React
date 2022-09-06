@@ -14,21 +14,17 @@ export default function Header(props) {
         setTracks(props.tracks)
     }, [props.tracks])
 
-    const [classNameAuthor, setClassNameAuthor] = useState('search_by_button', 'search_by_songer')
-    const [classNameYear, setClassNameYear] = useState('search_by_button', 'search_by_songer')
-    const [classNameGenre, setClassNameGenre] = useState('search_by_button', 'search_by_songer')
+    const [classNameAuthor, setClassNameAuthor] = useState('search_by_button')
+    const [classNameYear, setClassNameYear] = useState('search_by_button')
+    const [classNameGenre, setClassNameGenre] = useState('search_by_button')
 
     const [filterIconAuthor, setFilterIconAuthor] = useState(0)
     const [filterIconYear, setFilterIconYear] = useState(0)
     const [filterIconGenre, setFilterIconGenre] = useState(0)
 
-    const [selectAuthor, setSelectAuthor] = useState([])
-    const [selectYear, setSelectYear] = useState([])
-    const [selectGenre, setSelectGenre] = useState([])
-
-    const [selectAuthorClass, setSelectAuthorClass] = useState('icon_filter')
-    const [selectYearClass, setSelectYearClass] = useState('icon_filter')
-    const [selectGenreClass, setSelectGenreClass] = useState('icon_filter')
+    const [selectAuthor, setSelectAuthor] = useState({})
+    const [selectYear, setSelectYear] = useState({})
+    const [selectGenre, setSelectGenre] = useState({})
 
     const [filterCountAuthor, setFilterCountAuthor] = useState(0)
     const [filterCountYear, setFilterCountYear] = useState(0)
@@ -37,45 +33,32 @@ export default function Header(props) {
     const [filterCountClassAuthor, setFilterCountClassAuthor] = useState('icon_counter_display')
     const [filterCountClassYear, setFilterCountClassYear] = useState('icon_counter_display')
     const [filterCountClassGenre, setFilterCountClassGenre] = useState('icon_counter_display')
+
+    // Функция для проверки наличия true в объетках selectAuthor / selectYear / selectGenre
+    function hasAppliedFilters(selectObject) {
+        return Object.values(selectObject).some(status => status)
+    }
     
     // функции отрисовки в Track по фильтру авторов/года/жанры
     function handleAuthorSelect(e) {
-        
-        handlerClickSelect(selectAuthorClass, setSelectAuthorClass)
-
-        if (selectAuthor.includes(e.target.id)) {
-            setSelectAuthor( selectAuthor.filter( author  => author !== e.target.id) )
-            setFilterCountAuthor(filterCountAuthor - 1)
-        } else {
-            setSelectAuthor(selectAuthor.concat([e.target.id]))
-            setFilterCountAuthor(filterCountAuthor + 1)   
-        }
+        const selectAuthorNew = {...selectAuthor}
+        selectAuthorNew[e.target.id] = !selectAuthorNew[e.target.id]
+        setSelectAuthor(selectAuthorNew)
+        setFilterCountAuthor(filterCountAuthor + (selectAuthorNew[e.target.id] ? 1 : -1))
     }
 
     function handleYearSelect(e) {
-        
-        handlerClickSelect(selectYearClass, setSelectYearClass)
-
-        if (selectYear.includes(e.target.id)) {
-            setSelectYear( selectAuthor.filter( year  => year !== e.target.id) )
-            setFilterCountYear(filterCountYear - 1)
-        } else {
-            setSelectYear(selectYear.concat([e.target.id]))
-            setFilterCountYear(filterCountYear + 1)   
-        }
+        const selectYearNew = {...selectYear}
+        selectYearNew[e.target.id] = !selectYearNew[e.target.id]
+        setSelectYear(selectYearNew)
+        setFilterCountYear(filterCountYear + (selectYearNew[e.target.id] ? 1 : -1))
     }
 
     function handleGenreSelect(e) {
-        
-        handlerClickSelect(selectGenreClass, setSelectGenreClass)
-
-        if (selectGenre.includes(e.target.id)) {
-            setSelectGenre( selectGenre.filter( genre  => genre !== e.target.id) )
-            setFilterCountGenre(filterCountGenre - 1)
-        } else {
-            setSelectGenre(selectGenre.concat([e.target.id]))
-            setFilterCountGenre(filterCountGenre + 1)   
-        }
+        const selectGenreNew = {...selectGenre}
+        selectGenreNew[e.target.id] = !selectGenreNew[e.target.id]
+        setSelectGenre(selectGenreNew)
+        setFilterCountGenre(filterCountGenre + (selectGenreNew[e.target.id] ? 1 : -1))
     }
     
     // функция изменения вида счетчика
@@ -101,22 +84,23 @@ export default function Header(props) {
         if (filterCountGenre >= 1) {
             setFilterCountClassGenre('icon_counter_genre')
         } 
-        if (filterCountAuthor === 0) {
+        if (filterCountGenre === 0) {
             setFilterCountClassGenre('icon_counter_display')
         }
     }
     
     //для отслеживания изменений выбора авторов/года/жанры
     useEffect(() => {
-        props.setFilterAuthors(selectAuthor)
+        props.setFilterAuthors(Object.keys(selectAuthor).filter((author) => { return selectAuthor[author] }))
     }, [selectAuthor])
 
     useEffect(() => {
-        props.setFilterYears(selectYear)
+        console.log(Object.keys(selectYear).filter((year) => { return selectYear[year] }))
+        props.setFilterYears(Object.keys(selectYear).filter((year) => { return selectYear[year] }))
     }, [selectYear])
 
     useEffect(() => {
-        props.setFilterGenries(selectGenre)
+        props.setFilterGenries(Object.keys(selectGenre).filter((genre) => { return selectGenre[genre] }))
     }, [selectGenre])
  
     //для отслеживания изменений счетчика авторов/года/жанры
@@ -133,37 +117,55 @@ export default function Header(props) {
     }, [filterCountGenre])
 
     // сохранение авторов/года/жанров в объекты
-    const resultTracksAuthor = []
-    const resultTracksYear = []
-    const resultTracksGenre = []
-    const seenKeys = new Set()
+    // Инициализация Object фильтра по автору
+    useEffect(() => {
+        const seenKeys = new Set()
 
-    if (tracks !== null) {
-        for (const row of tracks) {
-            if (seenKeys.has(row.author)) continue
-            resultTracksAuthor.push(row)
-            seenKeys.add(row.author)
+        let resultTracksAuthor = {}
+        if (tracks !== null) {
+            for (const row of tracks) {
+                if (seenKeys.has(row.author)) continue
+                resultTracksAuthor[row.author] = false
+                seenKeys.add(row.author)
+            }
+            setSelectAuthor(resultTracksAuthor)
         }
-    }
+    }, [tracks])
+    
 
-    if (tracks !== null) {
-        for (const row of tracks) {
-            if (seenKeys.has(row.year)) continue
-            resultTracksYear.push(row)
-            seenKeys.add(row.year)
-        }
-    }
+    // Инициализация Object фильтра по году
+    useEffect(() => {
+        const seenKeys = new Set()
 
-    if (tracks !== null) {
-        for (const row of tracks) {
-            if (seenKeys.has(row.genre)) continue
-            resultTracksGenre.push(row)
-            seenKeys.add(row.genre)
+        let resultTracksYear = {}
+        if (tracks !== null) {
+            for (const row of tracks) {
+                if (seenKeys.has(row.year)) continue
+                resultTracksYear[row.year] = false
+                seenKeys.add(row.year)
+            }
+            setSelectYear(resultTracksYear)
         }
-    }
+    }, [tracks])
+
+
+    // Инициализация Object фильтра по жанру
+    useEffect(() => {
+        const seenKeys = new Set()
+
+        let resultTracksGenre = {}
+        if (tracks !== null) {
+            for (const row of tracks) {
+                if (seenKeys.has(row.genre)) continue
+                resultTracksGenre[row.genre] = false
+                seenKeys.add(row.genre)
+            }
+            setSelectGenre(resultTracksGenre)
+        }
+    }, [tracks])
  
     //функция изменения вида кнопки
-    function haderClickFilter(className, setClassName, filterCount) {
+    function headerClickFilter(className, setClassName, filterCount) {
         if(className === 'search_by_button') {
             setClassName('search_by_button_active') 
         } else {
@@ -179,21 +181,11 @@ export default function Header(props) {
             setFilterIcon(1)
         } else {
             setFilterIcon(0)
-
-            // if (filterCountClassAuthor === 0) {
-            //     setClassNameButton('search_by_button', 'search_by_songer')
-            // }
-            // if (filterCountClassYear === 0) {
-            //     setClassNameButton('search_by_button', 'search_by_songer')
-            // }
-            // if (filterCountClassGenre === 0) {
-            //     setClassNameButton('search_by_button', 'search_by_songer')
-            // }
         }
     }
 
     // удаление других открытых плашек
-    function removeDieFiltre(filterIcon1, setFilterIcon1, filterIcon2, setFilterIcon2) {
+    function removeDieFilter(filterIcon1, setFilterIcon1, filterIcon2, setFilterIcon2) {
         if(filterIcon1 === 1 || filterIcon2 === 1) {
             setFilterIcon1(0)
             setFilterIcon2(0)
@@ -201,50 +193,65 @@ export default function Header(props) {
     }
 
     //функции нажатия на кнопку фильтра авторы/жанры/года
-    function haderClickFilterAuthor() {
-        haderClickFilter(classNameAuthor, setClassNameAuthor, filterCountAuthor)
+    function headerClickFilterAuthor() {
+        headerClickFilter(classNameAuthor, setClassNameAuthor, filterCountAuthor)
         addedClickFilterButton(filterIconAuthor, setFilterIconAuthor, setClassNameAuthor)
-        removeDieFiltre(filterIconYear, setFilterIconYear, filterIconGenre, setFilterIconGenre)
+        removeDieFilter(filterIconYear, setFilterIconYear, filterIconGenre, setFilterIconGenre)
         addedFilterCountClassAuthor()
     }
 
-    function haderClickFilterYear() {
-        haderClickFilter(classNameYear, setClassNameYear, filterCountYear)
+    function headerClickFilterYear() {
+        headerClickFilter(classNameYear, setClassNameYear, filterCountYear)
         addedClickFilterButton(filterIconYear, setFilterIconYear, setClassNameYear)
-        removeDieFiltre(filterIconAuthor, setFilterIconAuthor, filterIconGenre, setFilterIconGenre)
+        removeDieFilter(filterIconAuthor, setFilterIconAuthor, filterIconGenre, setFilterIconGenre)
         addedFilterCountClassYear()
     }
 
-    function haderClickFilterGenre() {
-        haderClickFilter(classNameGenre, setClassNameGenre, filterCountGenre)
+    function headerClickFilterGenre() {
+        headerClickFilter(classNameGenre, setClassNameGenre, filterCountGenre)
         addedClickFilterButton(filterIconGenre, setFilterIconGenre, setClassNameGenre)
-        removeDieFiltre(filterIconYear, setFilterIconYear, filterIconAuthor, setFilterIconAuthor)
+        removeDieFilter(filterIconYear, setFilterIconYear, filterIconAuthor, setFilterIconAuthor)
         addedFilterCountClassGenre()
-    }
-
-    //функция изменения вида названий авторы/года/кнопки
-    function handlerClickSelect(className, setClassName) {
-        if(className === 'icon_filter') {
-            setClassName('icon_filter_chouse')
-        } else {
-            setClassName('icon_filter')
-        }
     }
 
     //компоненты блоков, в которых отображаются кнопки авторов/годов/жанров 
     const AddedFilterIconAuthor = () => 
         <div className='filter_icon filter_icon_author'>
-        { resultTracksAuthor.map((track) => <button className={selectAuthorClass} key={track.id} id={track.author} onClick={handleAuthorSelect}>{track.author}</button> )}
+            {
+                Object.keys(selectAuthor).map((author, idx) => 
+                <button
+                    className={selectAuthor[author] ? 'icon_filter_selected' : 'icon_filter'}
+                    key={idx}
+                    id={author}
+                    onClick={handleAuthorSelect}
+                >{author}</button>)
+            }
         </div>
 
     const AddedFilterIconYear = () => 
         <div className='filter_icon filter_icon_year'>
-            { resultTracksYear.map((track) => <button className={selectYearClass} key={track.id} id={track.year} onClick={handleYearSelect}>{track.year}</button> )}
+            {
+                Object.keys(selectYear).map((year, idx) => 
+                <button
+                    className={selectYear[year] ? 'icon_filter_selected' : 'icon_filter'}
+                    key={idx}
+                    id={year}
+                    onClick={handleYearSelect}
+                >{year}</button>)
+            }
         </div>
 
     const AddedFilterIconGenre = () => 
         <div className='filter_icon filter_icon_genre'>
-            { resultTracksGenre.map((track) => <button className={selectGenreClass} key={track.id} id={track.genre} onClick={handleGenreSelect}>{track.genre}</button> )}
+            {
+                Object.keys(selectGenre).map((genre, idx) => 
+                <button
+                    className={selectGenre[genre] ? 'icon_filter_selected' : 'icon_filter'}
+                    key={idx}
+                    id={genre}
+                    onClick={handleGenreSelect}
+                >{genre}</button>)
+            }
         </div>
     
     // компонент блока счетчика aвторов/годов/жанров
@@ -265,13 +272,13 @@ export default function Header(props) {
       <p className="header_title">{props.title}</p>
       <div className="search_by_block">
           <p className="search_by">Искать по:</p>
-          <button className={classNameAuthor} onClick={haderClickFilterAuthor}>исполнителю</button>
+          <button className={classNameAuthor} onClick={headerClickFilterAuthor}>исполнителю</button>
           { [...Array(filterIconAuthor)].map((_, i) => <AddedFilterIconAuthor key={i} />) }
           <AddedCounterAuthor />
-          <button className={classNameYear} onClick={haderClickFilterYear}>году выпуска</button>
+          <button className={classNameYear} onClick={headerClickFilterYear}>году выпуска</button>
           { [...Array(filterIconYear)].map((_, i) => <AddedFilterIconYear key={i} />) }
           <AddedCounterYear />
-          <button className={classNameGenre} onClick={haderClickFilterGenre}>жанру</button>
+          <button className={classNameGenre} onClick={headerClickFilterGenre}>жанру</button>
           { [...Array(filterIconGenre)].map((_, i) => <AddedFilterIconGenre key={i} />) }
           <AddedCounterGenre />
       </div>

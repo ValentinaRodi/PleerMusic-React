@@ -57,7 +57,7 @@ export default function MainPage() {
     const [currTrackHasAdjacent, setCurrTrackHasAdjacent] = useState(null)
     const [searchText, setSearchText] = useState('')
 
-    const [filterAuthors, setFilterAuthors] = useState([])
+    const [filterAuthors, setFilterAuthors] = useState({})
     const [filterYears, setFilterYears] = useState([])
     const [filterGenries, setFilterGenries] = useState([])
 
@@ -146,7 +146,7 @@ export default function MainPage() {
                             || (track.album.toLowerCase() === searchText.toLowerCase())
                             || (track.album.toLowerCase().includes(searchText.toLowerCase())))
                             && (filterAuthors.length === 0 ? true : filterAuthors.includes(track.author))  
-                            && (filterYears.length === 0 ? true : filterYears.includes(track.year)) 
+                            && (filterYears.length === 0 ? true : filterYears.includes(track.year.toString())) 
                             && (filterGenries.length === 0 ? true : filterGenries.includes(track.genre))  
                         )
 
