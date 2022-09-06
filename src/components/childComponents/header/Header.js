@@ -131,7 +131,6 @@ export default function Header(props) {
             setSelectAuthor(resultTracksAuthor)
         }
     }, [tracks])
-    
 
     // Инициализация Object фильтра по году
     useEffect(() => {
@@ -147,7 +146,6 @@ export default function Header(props) {
             setSelectYear(resultTracksYear)
         }
     }, [tracks])
-
 
     // Инициализация Object фильтра по жанру
     useEffect(() => {
@@ -192,12 +190,23 @@ export default function Header(props) {
         }
     }
 
+    // Снятие выделение с кнопок-фильтров "исполнителю", "году", "жанру"
+    function deselectFilterButton(className, setClassName, filterCount) {
+        if (className === 'search_by_button_active' && filterCount === 0) {
+            setClassName('search_by_button')
+        }
+    }
+
     //функции нажатия на кнопку фильтра авторы/жанры/года
     function headerClickFilterAuthor() {
         headerClickFilter(classNameAuthor, setClassNameAuthor, filterCountAuthor)
         addedClickFilterButton(filterIconAuthor, setFilterIconAuthor, setClassNameAuthor)
         removeDieFilter(filterIconYear, setFilterIconYear, filterIconGenre, setFilterIconGenre)
         addedFilterCountClassAuthor()
+
+        // Снятие выделения с других кнопок-фильтров
+        deselectFilterButton(classNameYear, setClassNameYear, filterCountYear)
+        deselectFilterButton(classNameGenre, setClassNameGenre, filterCountGenre)
     }
 
     function headerClickFilterYear() {
@@ -205,6 +214,10 @@ export default function Header(props) {
         addedClickFilterButton(filterIconYear, setFilterIconYear, setClassNameYear)
         removeDieFilter(filterIconAuthor, setFilterIconAuthor, filterIconGenre, setFilterIconGenre)
         addedFilterCountClassYear()
+
+        // Снятие выделения с других кнопок-фильтров
+        deselectFilterButton(classNameAuthor, setClassNameAuthor, filterCountAuthor)
+        deselectFilterButton(classNameGenre, setClassNameGenre, filterCountGenre)
     }
 
     function headerClickFilterGenre() {
@@ -212,6 +225,10 @@ export default function Header(props) {
         addedClickFilterButton(filterIconGenre, setFilterIconGenre, setClassNameGenre)
         removeDieFilter(filterIconYear, setFilterIconYear, filterIconAuthor, setFilterIconAuthor)
         addedFilterCountClassGenre()
+
+        // Снятие выделения с других кнопок-фильтров
+        deselectFilterButton(classNameAuthor, setClassNameAuthor, filterCountAuthor)
+        deselectFilterButton(classNameYear, setClassNameYear, filterCountYear)
     }
 
     //компоненты блоков, в которых отображаются кнопки авторов/годов/жанров 
