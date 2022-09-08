@@ -95,7 +95,6 @@ export default function Header(props) {
     }, [selectAuthor])
 
     useEffect(() => {
-        console.log(Object.keys(selectYear).filter((year) => { return selectYear[year] }))
         props.setFilterYears(Object.keys(selectYear).filter((year) => { return selectYear[year] }))
     }, [selectYear])
 
@@ -117,47 +116,50 @@ export default function Header(props) {
     }, [filterCountGenre])
 
     // сохранение авторов/года/жанров в объекты
-    // Инициализация Object фильтра по автору
     useEffect(() => {
-        const seenKeys = new Set()
+        // Clear current filter styles
+        setFilterCountAuthor(0)
+        setFilterCountYear(0)
+        setFilterCountGenre(0)
+        
+        setFilterCountClassAuthor('icon_counter_display')
+        setFilterCountClassYear('icon_counter_display')
+        setFilterCountClassGenre('icon_counter_display')
+
+        setClassNameAuthor('search_by_button')
+        setClassNameYear('search_by_button')
+        setClassNameGenre('search_by_button')
+
+        //
+        const authorSeenKeys = new Set()
+        const yearSeenKeys = new Set()
+        const genreSeenKeys = new Set()
 
         let resultTracksAuthor = {}
-        if (tracks !== null) {
-            for (const row of tracks) {
-                if (seenKeys.has(row.author)) continue
-                resultTracksAuthor[row.author] = false
-                seenKeys.add(row.author)
-            }
-            setSelectAuthor(resultTracksAuthor)
-        }
-    }, [tracks])
-
-    // Инициализация Object фильтра по году
-    useEffect(() => {
-        const seenKeys = new Set()
-
         let resultTracksYear = {}
-        if (tracks !== null) {
-            for (const row of tracks) {
-                if (seenKeys.has(row.year)) continue
-                resultTracksYear[row.year] = false
-                seenKeys.add(row.year)
-            }
-            setSelectYear(resultTracksYear)
-        }
-    }, [tracks])
-
-    // Инициализация Object фильтра по жанру
-    useEffect(() => {
-        const seenKeys = new Set()
-
         let resultTracksGenre = {}
         if (tracks !== null) {
             for (const row of tracks) {
-                if (seenKeys.has(row.genre)) continue
-                resultTracksGenre[row.genre] = false
-                seenKeys.add(row.genre)
+                const author = row.author
+                if (!authorSeenKeys.has(author)) {
+                    resultTracksAuthor[author] = false
+                    authorSeenKeys.add(author)
+                }
+
+                const year = row.release_date ? parseInt(row.release_date.slice(0, 4), 10) : "Not stated"
+                if (!yearSeenKeys.has(year)) {
+                    resultTracksYear[year] = false
+                    yearSeenKeys.add(year)
+                }
+
+                const genre = row.genre
+                if (!genreSeenKeys.has(genre)) {
+                    resultTracksGenre[genre] = false
+                    genreSeenKeys.add(genre)
+                }
             }
+            setSelectAuthor(resultTracksAuthor)
+            setSelectYear(resultTracksYear)
             setSelectGenre(resultTracksGenre)
         }
     }, [tracks])

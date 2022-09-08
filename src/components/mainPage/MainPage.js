@@ -15,7 +15,7 @@ const TRACKS_TEST = [
         duration_in_seconds: 238,
         genre: 'pop',
         year: 2022,
-        path: 'http://127.0.0.1:8887/src/test_audio/vast_touched.mp3',
+        track_file: 'http://127.0.0.1:8887/src/test_audio/vast_touched.mp3',
     },
     {
         id: 2,
@@ -25,7 +25,7 @@ const TRACKS_TEST = [
         duration_in_seconds: 240,
         genre: 'rock',
         year: 2021,
-        path: 'http://127.0.0.1:8887/src/test_audio/vast_thrown_way.mp3',
+        track_file: 'http://127.0.0.1:8887/src/test_audio/vast_thrown_way.mp3',
     },
     {
         id: 3,
@@ -35,7 +35,7 @@ const TRACKS_TEST = [
         duration_in_seconds: 247,
         genre: 'popsa',
         year: 2020,
-        path: 'http://127.0.0.1:8887/src/test_audio/isaac_nightingale_love_is_gone.mp3',
+        track_file: 'http://127.0.0.1:8887/src/test_audio/isaac_nightingale_love_is_gone.mp3',
     },
     {
         id: 4,
@@ -45,7 +45,7 @@ const TRACKS_TEST = [
         duration_in_seconds: 180,
         genre: 'pop',
         year: 2022,
-        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+        track_file: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
     }
 ]
 
@@ -146,7 +146,7 @@ export default function MainPage() {
                             || (track.album.toLowerCase() === searchText.toLowerCase())
                             || (track.album.toLowerCase().includes(searchText.toLowerCase())))
                             && (filterAuthors.length === 0 ? true : filterAuthors.includes(track.author))  
-                            && (filterYears.length === 0 ? true : filterYears.includes(track.year.toString())) 
+                            && (filterYears.length === 0 ? true : filterYears.includes(track.relese ? track.release_date.slice(0, 4) : "Not stated")) 
                             && (filterGenries.length === 0 ? true : filterGenries.includes(track.genre))  
                         )
 
