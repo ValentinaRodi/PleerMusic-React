@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import  './header.css'
 
 export default function Header(props) {
@@ -163,7 +163,7 @@ export default function Header(props) {
             setSelectGenre(resultTracksGenre)
         }
     }, [tracks])
- 
+
     //функция изменения вида кнопки
     function headerClickFilter(className, setClassName, filterCount) {
         if(className === 'search_by_button') {
@@ -176,7 +176,7 @@ export default function Header(props) {
     }
 
     //функция добавления/удаления плашки авторы/жанры/года
-    function addedClickFilterButton(filterIcon, setFilterIcon, setClassNameButton) {
+    function addedClickFilterButton(filterIcon, setFilterIcon) {
         if(filterIcon === 0) {
             setFilterIcon(1)
         } else {
@@ -209,6 +209,8 @@ export default function Header(props) {
         // Снятие выделения с других кнопок-фильтров
         deselectFilterButton(classNameYear, setClassNameYear, filterCountYear)
         deselectFilterButton(classNameGenre, setClassNameGenre, filterCountGenre)
+        
+        setScroll(5)
     }
 
     function headerClickFilterYear() {
@@ -220,6 +222,8 @@ export default function Header(props) {
         // Снятие выделения с других кнопок-фильтров
         deselectFilterButton(classNameAuthor, setClassNameAuthor, filterCountAuthor)
         deselectFilterButton(classNameGenre, setClassNameGenre, filterCountGenre)
+
+        setScroll(5)
     }
 
     function headerClickFilterGenre() {
@@ -231,26 +235,40 @@ export default function Header(props) {
         // Снятие выделения с других кнопок-фильтров
         deselectFilterButton(classNameAuthor, setClassNameAuthor, filterCountAuthor)
         deselectFilterButton(classNameYear, setClassNameYear, filterCountYear)
+
+        setScroll(5)
+    }
+
+    const [nScroll, setScroll] = useState(5)
+
+    function handleOnscroll(n) {
+        // const filterElement = document.getElementsByClassName(`filter_icon filter_icon_${filterName}`)[0]
+        // filterElement.style.height = filterElement.offsetHeight
+        setScroll(n)
+        console.log('scroll')
     }
 
     //компоненты блоков, в которых отображаются кнопки авторов/годов/жанров 
     const AddedFilterIconAuthor = () => 
-        <div className='filter_icon filter_icon_author'>
+        <div className='filter_icon filter_icon_author' onWheel={() => {handleOnscroll(Object.keys(selectAuthor).length)}}>
             {
-                Object.keys(selectAuthor).map((author, idx) => 
-                <button
-                    className={selectAuthor[author] ? 'icon_filter_selected' : 'icon_filter'}
-                    key={idx}
-                    id={author}
-                    onClick={handleAuthorSelect}
-                >{author}</button>)
+                Object.keys(selectAuthor).slice(0, nScroll).map((author, idx) => {
+                    
+                    return (<button
+                        className={selectAuthor[author] ? 'icon_filter_selected' : 'icon_filter'}
+                        key={idx}
+                        id={author}
+                        onClick={handleAuthorSelect}
+                        >{author}</button>)
+                    }
+               )
             }
         </div>
-
+    
     const AddedFilterIconYear = () => 
-        <div className='filter_icon filter_icon_year'>
+        <div className='filter_icon filter_icon_year' onWheel={() => {handleOnscroll(Object.keys(selectYear).length)}}>
             {
-                Object.keys(selectYear).map((year, idx) => 
+                Object.keys(selectYear).slice(0, nScroll).map((year, idx) => 
                 <button
                     className={selectYear[year] ? 'icon_filter_selected' : 'icon_filter'}
                     key={idx}
@@ -260,10 +278,12 @@ export default function Header(props) {
             }
         </div>
 
+    
+
     const AddedFilterIconGenre = () => 
-        <div className='filter_icon filter_icon_genre'>
+        <div className='filter_icon filter_icon_genre' onWheel={() => {handleOnscroll(Object.keys(selectGenre).length)}}>
             {
-                Object.keys(selectGenre).map((genre, idx) => 
+                Object.keys(selectGenre).slice(0, nScroll).map((genre, idx) => 
                 <button
                     className={selectGenre[genre] ? 'icon_filter_selected' : 'icon_filter'}
                     key={idx}
@@ -313,7 +333,8 @@ export default function Header(props) {
               </svg>    
           </div>
       </div>
-
   </div> 
     )
   }
+
+  

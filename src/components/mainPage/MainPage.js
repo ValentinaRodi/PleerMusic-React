@@ -43,9 +43,47 @@ const TRACKS_TEST = [
         name: 'Gimme Gimme',
         album: 'X',
         duration_in_seconds: 180,
-        genre: 'pop',
+        genre: 'elektro',
         year: 2022,
-        track_file: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+    },
+    {
+        id: 5,
+        author: 'Dead Sara2',
+        name: 'Gimme Gimme',
+        album: 'X',
+        duration_in_seconds: 180,
+        genre: 'pop2',
+        year: 2019,
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+    }, {
+        id: 6,
+        author: 'Dead Sara3',
+        name: 'Gimme Gimme',
+        album: 'X',
+        duration_in_seconds: 180,
+        genre: 'pop3',
+        year: 2018,
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+    }, {
+        id: 7,
+        author: 'Dead Sara4',
+        name: 'Gimme Gimme',
+        album: 'X',
+        duration_in_seconds: 180,
+        genre: 'pop4',
+        year: 2017,
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+    },
+    {
+        id: 8,
+        author: 'Dead Sara5',
+        name: 'Gimme Gimme',
+        album: 'X',
+        duration_in_seconds: 180,
+        genre: 'pop5555',
+        year: 2016,
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
     }
 ]
 
@@ -74,7 +112,6 @@ export default function MainPage() {
         setTracks(null)
     }
 
-    //
     const setCurrentTrackById = (trackId) => {
         const currentTrack = tracks.filter((track) => {
             return track.id === trackId
