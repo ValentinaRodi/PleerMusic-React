@@ -15,7 +15,7 @@ const TRACKS_TEST = [
         duration_in_seconds: 238,
         genre: 'pop',
         year: 2022,
-        path: 'http://127.0.0.1:8887/src/test_audio/vast_touched.mp3',
+        track_file: 'http://127.0.0.1:8887/src/test_audio/vast_touched.mp3',
     },
     {
         id: 2,
@@ -25,7 +25,7 @@ const TRACKS_TEST = [
         duration_in_seconds: 240,
         genre: 'rock',
         year: 2021,
-        path: 'http://127.0.0.1:8887/src/test_audio/vast_thrown_way.mp3',
+        track_file: 'http://127.0.0.1:8887/src/test_audio/vast_thrown_way.mp3',
     },
     {
         id: 3,
@@ -35,7 +35,7 @@ const TRACKS_TEST = [
         duration_in_seconds: 247,
         genre: 'popsa',
         year: 2020,
-        path: 'http://127.0.0.1:8887/src/test_audio/isaac_nightingale_love_is_gone.mp3',
+        track_file: 'http://127.0.0.1:8887/src/test_audio/isaac_nightingale_love_is_gone.mp3',
     },
     {
         id: 4,
@@ -43,8 +43,46 @@ const TRACKS_TEST = [
         name: 'Gimme Gimme',
         album: 'X',
         duration_in_seconds: 180,
-        genre: 'pop',
+        genre: 'elektro',
         year: 2022,
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+    },
+    {
+        id: 5,
+        author: 'Dead Sara2',
+        name: 'Gimme Gimme',
+        album: 'X',
+        duration_in_seconds: 180,
+        genre: 'pop2',
+        year: 2019,
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+    }, {
+        id: 6,
+        author: 'Dead Sara3',
+        name: 'Gimme Gimme',
+        album: 'X',
+        duration_in_seconds: 180,
+        genre: 'pop3',
+        year: 2018,
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+    }, {
+        id: 7,
+        author: 'Dead Sara4',
+        name: 'Gimme Gimme',
+        album: 'X',
+        duration_in_seconds: 180,
+        genre: 'pop4',
+        year: 2017,
+        path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
+    },
+    {
+        id: 8,
+        author: 'Dead Sara5',
+        name: 'Gimme Gimme',
+        album: 'X',
+        duration_in_seconds: 180,
+        genre: 'pop5555',
+        year: 2016,
         path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
     }
 ]
@@ -57,7 +95,7 @@ export default function MainPage() {
     const [currTrackHasAdjacent, setCurrTrackHasAdjacent] = useState(null)
     const [searchText, setSearchText] = useState('')
 
-    const [filterAuthors, setFilterAuthors] = useState([])
+    const [filterAuthors, setFilterAuthors] = useState({})
     const [filterYears, setFilterYears] = useState([])
     const [filterGenries, setFilterGenries] = useState([])
 
@@ -74,7 +112,6 @@ export default function MainPage() {
         setTracks(null)
     }
 
-    //
     const setCurrentTrackById = (trackId) => {
         const currentTrack = tracks.filter((track) => {
             return track.id === trackId
@@ -146,7 +183,7 @@ export default function MainPage() {
                             || (track.album.toLowerCase() === searchText.toLowerCase())
                             || (track.album.toLowerCase().includes(searchText.toLowerCase())))
                             && (filterAuthors.length === 0 ? true : filterAuthors.includes(track.author))  
-                            && (filterYears.length === 0 ? true : filterYears.includes(track.year)) 
+                            && (filterYears.length === 0 ? true : filterYears.includes(track.relese ? track.release_date.slice(0, 4) : "Not stated")) 
                             && (filterGenries.length === 0 ? true : filterGenries.includes(track.genre))  
                         )
 

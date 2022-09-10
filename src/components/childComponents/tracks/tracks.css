@@ -51,7 +51,8 @@
 	width: 51px;
 	height: 51px;
 	padding: 16px;
-	background: #313131;
+	background-image: url("./icons/track_placeholder.png");
+	background-size: 51px 51px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
