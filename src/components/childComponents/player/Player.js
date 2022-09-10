@@ -123,7 +123,7 @@ export default function Player(props) {
         setCurrSongHasAdjacent(props.currTrackHasAdjacent)
         setIsPlaying(true)
 
-        currentAudio.setAttribute('src', props.currentTrack.path)
+        currentAudio.setAttribute('src', props.currentTrack.track_file)
         currentAudio.load()
         currentAudio.play()
         currentAudio.addEventListener('timeupdate', handleTimeUpdate)

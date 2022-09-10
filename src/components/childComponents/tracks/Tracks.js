@@ -1,10 +1,9 @@
-import  './tracks.css'
+import './tracks.css'
 import './skeletonTracks.css'
-import LoginPage from '../../loginPage/LoginPage'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getTracksAll } from '../../../backend/getTracks'
-import PlayIcon from '../player/icons/play.png'
+import TrackPlayIcon from './icons/track_play_icon.png'
+import TrackPlaceholderIcon from './icons/track_placeholder.png'
 
 function secondsToString(timeSec) {
     const mins = Math.floor(timeSec / 60).toString()
@@ -50,23 +49,12 @@ export default function Tracks(props) {
     // Смена иконки по наведению на трек
     const handleMouseOver = (trackId) => {
         const trackImage = document.getElementById(trackId)
-        trackImage.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#D9D9D9" class="bi bi-play-circle" viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-        </svg>
-        `
+        trackImage.style.backgroundImage = `url(${TrackPlayIcon})`
     }
 
     const handleMouseOut = (trackId) => {
         const trackImage = document.getElementById(trackId)
-        trackImage.innerHTML = `
-        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 16V1.9697L19 1V13" stroke="#4E4E4E"/>
-            <ellipse cx="4.5" cy="16" rx="3.5" ry="2" stroke="#4E4E4E"/>
-            <ellipse cx="15.5" cy="13" rx="3.5" ry="2" stroke="#4E4E4E"/>
-        </svg>
-        `
+        trackImage.style.backgroundImage = `url(${TrackPlaceholderIcon})`
         // trackImage.children[0].addEventListener('click', () => setCurrentTrack(trackId))
     }
 
@@ -87,11 +75,6 @@ export default function Tracks(props) {
                                         onMouseOut={() => handleMouseOut(track.id)}
                                         onClick={(event) => setCurrentTrack(track.id)}
                                     >
-                                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 16V1.9697L19 1V13" stroke="#4E4E4E"/>
-                                            <ellipse cx="4.5" cy="16" rx="3.5" ry="2" stroke="#4E4E4E"/>
-                                            <ellipse cx="15.5" cy="13" rx="3.5" ry="2" stroke="#4E4E4E"/>
-                                        </svg>
                                     </div>
                                     <div className="track__title-text">
                                         <a className="track__title-link" href="http://">{track.name}<span className="track__title-span"></span></a>
