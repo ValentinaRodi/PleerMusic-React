@@ -187,6 +187,10 @@ z-index: 1300;
   flex-wrap: wrap;
   gap: 30px;
   width: 300px;
+  height: 70px;
+  
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
 }
 
 .filter_icon_author {
@@ -209,6 +213,8 @@ z-index: 1300;
   background-color: #313131;
   border: 12px #313131;
   cursor: pointer;
+
+  scroll-snap-align: start;
 }
 
 .icon_filter_selected {

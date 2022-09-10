@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import  './header.css'
 
 export default function Header(props) {
@@ -95,7 +95,6 @@ export default function Header(props) {
     }, [selectAuthor])
 
     useEffect(() => {
-        console.log(Object.keys(selectYear).filter((year) => { return selectYear[year] }))
         props.setFilterYears(Object.keys(selectYear).filter((year) => { return selectYear[year] }))
     }, [selectYear])
 
@@ -161,6 +160,8 @@ export default function Header(props) {
             setSelectGenre(resultTracksGenre)
         }
     }, [tracks])
+
+   
  
     //функция изменения вида кнопки
     function headerClickFilter(className, setClassName, filterCount) {
@@ -174,7 +175,7 @@ export default function Header(props) {
     }
 
     //функция добавления/удаления плашки авторы/жанры/года
-    function addedClickFilterButton(filterIcon, setFilterIcon, setClassNameButton) {
+    function addedClickFilterButton(filterIcon, setFilterIcon) {
         if(filterIcon === 0) {
             setFilterIcon(1)
         } else {
@@ -197,6 +198,8 @@ export default function Header(props) {
         }
     }
 
+   
+
     //функции нажатия на кнопку фильтра авторы/жанры/года
     function headerClickFilterAuthor() {
         headerClickFilter(classNameAuthor, setClassNameAuthor, filterCountAuthor)
@@ -207,7 +210,25 @@ export default function Header(props) {
         // Снятие выделения с других кнопок-фильтров
         deselectFilterButton(classNameYear, setClassNameYear, filterCountYear)
         deselectFilterButton(classNameGenre, setClassNameGenre, filterCountGenre)
+        
+        // scrollToElement()
     }
+
+    // const fieldRef = useRef(null)
+   
+    // const [scroll, setScroll] = useState()
+
+    // useEffect(() => {
+    //     console.log(fieldRef.current) 
+    //     if (fieldRef.current) {
+    //         console.log(fieldRef.current) 
+    //         fieldRef.current.scrollIntoView({ behavior: "smooth" })
+    //     }
+    // }, [scroll])
+    
+    // function scrollToElement() {
+    //     setScroll(fieldRef.current)
+    // }
 
     function headerClickFilterYear() {
         headerClickFilter(classNameYear, setClassNameYear, filterCountYear)
@@ -233,15 +254,18 @@ export default function Header(props) {
 
     //компоненты блоков, в которых отображаются кнопки авторов/годов/жанров 
     const AddedFilterIconAuthor = () => 
-        <div className='filter_icon filter_icon_author'>
+        <div className='filter_icon filter_icon_author' >
             {
-                Object.keys(selectAuthor).map((author, idx) => 
-                <button
-                    className={selectAuthor[author] ? 'icon_filter_selected' : 'icon_filter'}
-                    key={idx}
-                    id={author}
-                    onClick={handleAuthorSelect}
-                >{author}</button>)
+                Object.keys(selectAuthor).map((author, idx) => {
+                    
+                    return (<button
+                        className={selectAuthor[author] ? 'icon_filter_selected' : 'icon_filter'}
+                        key={idx}
+                        id={author}
+                        onClick={handleAuthorSelect}
+                        >{author}</button>)
+                    }
+               )
             }
         </div>
 
@@ -311,7 +335,8 @@ export default function Header(props) {
               </svg>    
           </div>
       </div>
-
   </div> 
     )
   }
+
+  
