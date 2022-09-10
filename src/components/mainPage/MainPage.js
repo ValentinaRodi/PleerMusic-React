@@ -43,7 +43,7 @@ const TRACKS_TEST = [
         name: 'Gimme Gimme',
         album: 'X',
         duration_in_seconds: 180,
-        genre: 'pop',
+        genre: 'elektro',
         year: 2022,
         path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
     },
@@ -81,7 +81,7 @@ const TRACKS_TEST = [
         name: 'Gimme Gimme',
         album: 'X',
         duration_in_seconds: 180,
-        genre: 'pop5',
+        genre: 'pop5555',
         year: 2016,
         path: 'http://127.0.0.1:8887/src/test_audio/dead_sara_gimme_gimme.mp3',
     }
@@ -112,7 +112,6 @@ export default function MainPage() {
         setTracks(null)
     }
 
-    //
     const setCurrentTrackById = (trackId) => {
         const currentTrack = tracks.filter((track) => {
             return track.id === trackId

@@ -181,28 +181,30 @@ z-index: 1300;
   top: 300px;
   background-color: #313131;
   border-radius: 12px;
-  padding: 30px;
+  padding: 12px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
   width: 300px;
-  height: 70px;
-  
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow-y: scroll;
 }
+
+
 
 .filter_icon_author {
   left: 130px;
+  height: 64px;
 }
 
 .filter_icon_year {
   left: 280px;
+  height: 32px;
 }
 
 .filter_icon_genre {
   left: 430px;
+  height: 32px;
 }
 
 .icon_filter {
@@ -213,8 +215,6 @@ z-index: 1300;
   background-color: #313131;
   border: 12px #313131;
   cursor: pointer;
-
-  scroll-snap-align: start;
 }
 
 .icon_filter_selected {
